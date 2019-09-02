@@ -21,7 +21,7 @@
 
         <receiver android:name="com.chaos.gpiorecoderlauncher.BootBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SETTING" />
             </intent-filter>
         </receiver>
 

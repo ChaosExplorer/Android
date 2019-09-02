@@ -31,15 +31,19 @@ public class AiService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        runTask();
+    }
+
+    private void runTask() {
         try {
-            String pb2_ret;
+            String pb1_ret;
             int ret;
             while (true) {
-                pb2_ret = Gpio.readGpio(mGpioCharB, 2);
-                ret = Integer.parseInt(pb2_ret);
+                pb1_ret = Gpio.readGpio(mGpioCharB, 2);
+                ret = Integer.parseInt(pb1_ret);
 
                 if (ret != State) {
-                    if (ret > 0) {
+                    if (ret > -1) {
                         Intent subintent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                         startActivity(subintent);
                     }
@@ -47,7 +51,7 @@ public class AiService extends IntentService {
                     State = ret;
                 }
 
-                Thread.sleep(100);
+                Thread.sleep(99);
 
             }
 
