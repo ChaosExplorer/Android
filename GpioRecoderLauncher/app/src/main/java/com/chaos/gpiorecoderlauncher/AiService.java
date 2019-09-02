@@ -4,9 +4,11 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.provider.MediaStore;
 
+import androidx.annotation.Nullable;
+
 public class AiService extends IntentService {
 
-    char mGpioCharB    ='b';
+    private final char mGpioCharB    ='b';
     private int State;
 
     public AiService(){
@@ -21,6 +23,11 @@ public class AiService extends IntentService {
         State = 0;
     }
 
+    @Override
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
+    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -46,6 +53,7 @@ public class AiService extends IntentService {
 
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 
