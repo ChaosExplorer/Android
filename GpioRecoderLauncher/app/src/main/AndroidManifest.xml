@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chaos.gpiorecoderlauncher">
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -19,11 +18,11 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.chaos.gpiorecoderlauncher.BootBroadcastReceiver">
+        <!--<receiver android:name="com.chaos.gpiorecoderlauncher.BootBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.SETTING" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <service android:name="com.chaos.gpiorecoderlauncher.AiService" />
     </application>

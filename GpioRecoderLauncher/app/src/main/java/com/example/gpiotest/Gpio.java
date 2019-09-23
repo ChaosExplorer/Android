@@ -1,4 +1,4 @@
-package com.chaos.gpiorecoderlauncher;
+package com.example.gpiotest;
 
 import android.util.Log;
 public class Gpio {

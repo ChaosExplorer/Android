@@ -1,5 +1,6 @@
 package com.chaos.gpiorecoderlauncher;
 
+import com.example.gpiotest.Gpio;
 import android.app.IntentService;
 import android.content.Intent;
 import android.provider.MediaStore;
@@ -10,6 +11,7 @@ public class AiService extends IntentService {
 
     private final char mGpioCharB    ='b';
     private int State;
+    private static int launch = 0;
 
     public AiService(){
         super("AiService");
@@ -21,6 +23,7 @@ public class AiService extends IntentService {
         super.onCreate();
 
         State = 0;
+        ++launch;
     }
 
     @Override
@@ -31,7 +34,8 @@ public class AiService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        runTask();
+        if (launch <= 1)
+            runTask();
     }
 
     private void runTask() {
@@ -43,15 +47,16 @@ public class AiService extends IntentService {
                 ret = Integer.parseInt(pb1_ret);
 
                 if (ret != State) {
-                    if (ret > -1) {
+                    if (ret > 0) {
                         Intent subintent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                        subintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(subintent);
                     }
 
                     State = ret;
                 }
 
-                Thread.sleep(99);
+                Thread.sleep(300);
 
             }
 
@@ -64,5 +69,6 @@ public class AiService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        --launch;
     }
 }

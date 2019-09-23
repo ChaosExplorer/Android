@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ElecScanner</string>
+    <string name="app_name">抄表查询</string>
+    <string name="user_name">户名:</string>
+    <string name="address">地址:</string>
+    <string name="user_id">编号:</string>
+    <string name="table_number">表号:</string>
+    <string name="btn_text">条形码扫描</string>
 </resources>

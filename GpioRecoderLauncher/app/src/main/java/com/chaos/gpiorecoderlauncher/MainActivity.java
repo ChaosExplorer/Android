@@ -2,6 +2,7 @@ package com.chaos.gpiorecoderlauncher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gpiotest.Gpio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,13 +12,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn;
+    //private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn = (Button) findViewById(R.id.button);
+        Intent service = new Intent(this, AiService.class);
+        startService(service);
+
+        /*btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         });
+        */
     }
 
 }
